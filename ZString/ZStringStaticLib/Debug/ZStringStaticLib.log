@@ -1,0 +1,15 @@
+﻿  stdafx.cpp
+  ZString.cpp
+c:\users\ziwon\source\repos\zstring\zstringstaticlib\zstring.cpp(82): warning C4018: '>=': signed 또는 unsigned가 일치하지 않습니다.
+  ZWString.cpp
+c:\users\ziwon\source\repos\zstring\zstringstaticlib\zwstring.cpp(82): warning C4018: '>=': signed 또는 unsigned가 일치하지 않습니다.
+  코드를 생성하고 있습니다...
+  ZStringStaticLib.vcxproj -> C:\Users\ziwon\source\repos\ZString\Debug\ZStringStaticLib.lib
+  지정된 파일을 찾을 수 없습니다.
+  C:\Users\ziwon\source\repos\ZString\Debug\ZStringStaticLib.lib
+          1개 파일이 복사되었습니다.
+  C:\Users\ziwon\source\repos\ZString\ZStringStaticLib\stdafx.h
+  C:\Users\ziwon\source\repos\ZString\ZStringStaticLib\targetver.h
+  C:\Users\ziwon\source\repos\ZString\ZStringStaticLib\ZString.h
+  C:\Users\ziwon\source\repos\ZString\ZStringStaticLib\ZWString.h
+          4개 파일이 복사되었습니다.
