@@ -1,17 +1,6 @@
-// for lib test
-//#pragma comment (lib, "../lib/ZStringStaticLib.lib")
-//#include "../lib/header/ZString.h"
-//#include "../lib/header/ZWString.h"
-
-// for dll test
-#include "../ZStringDLL/stdafx.h"
-#pragma comment(lib, "../../ZString/Debug/ZStringDLL.lib")
-#include "../ZStringDLL/ZString.h"
-#include "../ZStringDLL/ZWString.h"
-
-// main
 #include <iostream>
-#include <Windows.h>
+#include "ZString.h"
+#include "ZWString.h"
 using namespace std;
 
 int main()

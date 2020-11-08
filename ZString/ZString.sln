@@ -5,10 +5,6 @@ VisualStudioVersion = 15.0.28307.421
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ZString", "ZString\ZString.vcxproj", "{ACD8E370-0142-402F-A591-F55BDEF78FC9}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ZStringStaticLib", "ZStringStaticLib\ZStringStaticLib.vcxproj", "{6C0590AA-D96D-4C4A-AB87-6351E44DE635}"
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ZStringDLL", "ZStringDLL\ZStringDLL.vcxproj", "{2E949B38-0F4F-44ED-9F0C-8371A5230714}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -25,22 +21,6 @@ Global
 		{ACD8E370-0142-402F-A591-F55BDEF78FC9}.Release|x64.Build.0 = Release|x64
 		{ACD8E370-0142-402F-A591-F55BDEF78FC9}.Release|x86.ActiveCfg = Release|Win32
 		{ACD8E370-0142-402F-A591-F55BDEF78FC9}.Release|x86.Build.0 = Release|Win32
-		{6C0590AA-D96D-4C4A-AB87-6351E44DE635}.Debug|x64.ActiveCfg = Debug|x64
-		{6C0590AA-D96D-4C4A-AB87-6351E44DE635}.Debug|x64.Build.0 = Debug|x64
-		{6C0590AA-D96D-4C4A-AB87-6351E44DE635}.Debug|x86.ActiveCfg = Debug|Win32
-		{6C0590AA-D96D-4C4A-AB87-6351E44DE635}.Debug|x86.Build.0 = Debug|Win32
-		{6C0590AA-D96D-4C4A-AB87-6351E44DE635}.Release|x64.ActiveCfg = Release|x64
-		{6C0590AA-D96D-4C4A-AB87-6351E44DE635}.Release|x64.Build.0 = Release|x64
-		{6C0590AA-D96D-4C4A-AB87-6351E44DE635}.Release|x86.ActiveCfg = Release|Win32
-		{6C0590AA-D96D-4C4A-AB87-6351E44DE635}.Release|x86.Build.0 = Release|Win32
-		{2E949B38-0F4F-44ED-9F0C-8371A5230714}.Debug|x64.ActiveCfg = Debug|x64
-		{2E949B38-0F4F-44ED-9F0C-8371A5230714}.Debug|x64.Build.0 = Debug|x64
-		{2E949B38-0F4F-44ED-9F0C-8371A5230714}.Debug|x86.ActiveCfg = Debug|Win32
-		{2E949B38-0F4F-44ED-9F0C-8371A5230714}.Debug|x86.Build.0 = Debug|Win32
-		{2E949B38-0F4F-44ED-9F0C-8371A5230714}.Release|x64.ActiveCfg = Release|x64
-		{2E949B38-0F4F-44ED-9F0C-8371A5230714}.Release|x64.Build.0 = Release|x64
-		{2E949B38-0F4F-44ED-9F0C-8371A5230714}.Release|x86.ActiveCfg = Release|Win32
-		{2E949B38-0F4F-44ED-9F0C-8371A5230714}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

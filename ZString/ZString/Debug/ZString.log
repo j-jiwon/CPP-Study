@@ -1,2 +1,1 @@
-﻿  main.cpp
-  ZString.vcxproj -> C:\Users\ziwon\source\repos\ZString\Debug\ZString.exe
+﻿C:\Users\ziwon\source\repos\j-jiwon\CPP-Study\ZString\\Library\bin\ZString.dll : fatal error LNK1107: 파일이 잘못되었거나 손상되었습니다. 0x350에서 읽을 수 없습니다.
