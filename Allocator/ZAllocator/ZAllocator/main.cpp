@@ -6,16 +6,9 @@ using namespace std;
 
 int main()
 {
-	size_t size = 100000;
 	ZAllocator zallocator;
+	void * ptr = zallocator.Allocate(64);
+	zallocator.Deallocate(ptr);
 
-	for (int i = 0; i < size; ++i)
-	{
-		void * za = zallocator.Allocate(16);
-		cout << i << endl;
-		if( i% 2 == 0)
-			zallocator.Deallocate(za);
-	}
-	
 	return 0;
 }

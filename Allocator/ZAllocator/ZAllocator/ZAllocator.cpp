@@ -1,106 +1,82 @@
 #include "ZAllocator.h"
 #include <new>
 #include <Windows.h>
+#include <iostream>
 static HANDLE hHeap;
+
+using namespace std;
 
 ZAllocator::ZAllocator()
 {
 	hHeap = HeapCreate(0, 1<<15, 0);
 }
 
-ZAllocator::ZAllocator(size_t size, void* start, size_t block_num)
-	: blockNum(block_num), blockSize(size)
+ZAllocator::ZAllocator(size_t chunksPerBlocks)
+	:mChunksPerBlock(chunksPerBlocks)
 {
-	zallocator = operator new(memorySize);
-
-	if (zallocator != nullptr)
-	{
-		for (auto i = 0; i < blockNum; ++i)
-		{
-			block_ptr curr = reinterpret_cast<block_ptr>(static_cast<char*>(zallocator) + i * (blockSize + sizeof(ZBlock)));
-
-			curr->prev_block = nullptr;
-			curr->next_block = freeBlock;
-
-			if (freeBlock != nullptr)
-			{
-				freeBlock->prev_block = curr;
-			}
-			freeBlock = curr;
-		}
-	}
-
+	alloc_ptr = reinterpret_cast<Chunk*>( operator new (chunksPerBlocks));
 };
 
 ZAllocator::~ZAllocator()
 {
-	if (zallocator != nullptr)
-		operator delete(zallocator);
 };
 
 void* ZAllocator::Allocate(size_t size)
 {
-	if (size > blockSize || freeBlock == nullptr || zallocator == nullptr)
+	if (size > mChunksPerBlock || alloc_ptr == nullptr)
 		return operator new(size);
 
-	block_ptr curr = freeBlock;
-	freeBlock = curr->next_block;
-
-	if (freeBlock != nullptr)
+	if (alloc_ptr == nullptr)
 	{
-		freeBlock->prev_block = nullptr;
+		alloc_ptr = allocateBlock(size);
 	}
 
-	curr->next_block = allocBlock;
-	if (allocBlock != nullptr)
-	{
-		allocBlock->prev_block = curr;
-	}
-	allocBlock = curr;
+	Chunk* freeChunk = alloc_ptr;
 
-	return static_cast<void *>(reinterpret_cast<char*>(curr) + sizeof(ZBlock));
+	alloc_ptr = alloc_ptr->next;
+
+	return freeChunk;
 }
 
 void ZAllocator::Deallocate(void* ptr)
 {
-	if (zallocator < ptr && ptr < (void*)((char*)zallocator + memorySize))
-	{
-		block_ptr curr = reinterpret_cast<block_ptr>(static_cast<char*>(ptr) - sizeof(ZBlock));
-
-		allocBlock = curr->next_block;
-		if (allocBlock != nullptr)
-		{
-			allocBlock->prev_block = nullptr;
-		}
-
-		curr->next_block = freeBlock;
-		if (freeBlock != nullptr)
-		{
-			freeBlock->prev_block = curr;
-		}
-
-		freeBlock = curr;
-
-	}
-	else 
-		operator delete(ptr);
+	reinterpret_cast<Chunk *>(ptr)->next = alloc_ptr;
+	alloc_ptr = reinterpret_cast<Chunk*>(ptr);
 }
 
+Chunk* ZAllocator::allocateBlock(size_t chunkSize)
+{
+	cout << mChunksPerBlock << "blocks" << endl;
 
-void* ZAllocator::operator new(size_t size)
+	size_t blockSize = mChunksPerBlock * chunkSize;
+
+	Chunk *blockBegin = reinterpret_cast<Chunk *>(malloc(blockSize));
+
+	Chunk *chunk = blockBegin;
+
+	if (chunk != nullptr)
+	{
+		for (int i = 0; i < mChunksPerBlock - 1; ++i)
+		{
+			chunk->next = reinterpret_cast<Chunk*>(reinterpret_cast<char *>(chunk) + chunkSize);
+			chunk = chunk->next;
+		}
+
+		chunk->next = nullptr;
+	}
+
+	return blockBegin;
+}
+
+void *operator new(size_t size)
 {
 	return HeapAlloc(hHeap, 0, size);
 }
 
-void ZAllocator::operator delete(void *ptr)
+void operator delete(void *ptr, size_t size)
 {
 	if (ptr != nullptr)
 	{
 		HeapFree(hHeap, 0, ptr);
 	}
-}
-
-void ZAllocator::SetHeap(HANDLE h)
-{
-	hHeap = h;
 }
