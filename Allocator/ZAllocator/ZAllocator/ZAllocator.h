@@ -1,29 +1,32 @@
 #pragma once
 #include <Windows.h>
 
-struct Chunk
+struct Chunk // individual objects
 {
-	Chunk* prev;
+	// Header
+	size_t size;
 	Chunk* next;
+
 };
+
 
 class ZAllocator
 {
 
 public:
 	ZAllocator();
-	ZAllocator(size_t chunksPerBlocks);
 	virtual ~ZAllocator() noexcept;
 
-	void* Allocate(size_t size);
-	void Deallocate(void* ptr);
+	static Chunk* Init(size_t chunkNum, size_t chunkSize);
+	static void* Allocate(size_t size);
+	static void Deallocate(void* chunk);
+
+	static Chunk* start_ptr;
 
 private:
-	size_t mChunksPerBlock;
-	Chunk* alloc_ptr = nullptr;
-	Chunk* allocateBlock(size_t chunkSize);
+	size_t _chunkNum;
+	ZAllocator(const ZAllocator&);
 };
 
-
-void *operator new(size_t size);
-void operator delete(void *ptr, size_t size);
+void *operator new(size_t);
+void operator delete(void*);
