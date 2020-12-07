@@ -1,7 +1,11 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Allocator"
+    "\\Allocator\\ZAllocator",
+    "\\MacroTest",
+    "\\ZFunction",
+    "\\ZString"
   ],
+  "SelectedNode": "\\ZString\\ZString.sln",
   "PreviewInSolutionExplorer": false
 }
